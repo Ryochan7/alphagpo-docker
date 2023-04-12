@@ -9,7 +9,7 @@ services:
       - "8000:8000"
     depends_on:
       - db
-      # - redis
+      - redis
   db:
     image: postgres:latest
     volumes:
@@ -18,5 +18,5 @@ services:
       - POSTGRES_DB=mygpo
       - POSTGRES_PASSWORD=mygpo
       - POSTGRES_USER=mygpo
-  # redis:
-  #   image: redis:latest
+  redis:
+    image: redis:latest
