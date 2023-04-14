@@ -4,4 +4,4 @@ mkdir -p ./data/postgres
 mkdir -p ./data/media
 
 # Pull in the latest code.
-git clone https://github.com/gpodder/mygpo.git
+git clone https://github.com/gpodder/mygpo.git mygpo-git

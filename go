@@ -27,5 +27,5 @@ else
 
   echo "Running command '$COMMAND'"
   source "./scripts/commands/$COMMAND"
-  echo "Done running command '$1'"
+  echo "Done running command '$COMMAND'"
 fi
