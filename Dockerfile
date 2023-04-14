@@ -4,11 +4,11 @@ FROM debian:latest
 RUN apt-get update \
   && apt-get install -y libpq-dev libjpeg-dev zlib1g-dev libwebp-dev \
   build-essential python3-dev virtualenv libffi-dev git python
-RUN mkdir /app
-WORKDIR /app
 
 # Install mygpo
-RUN git clone https://github.com/gpodder/mygpo.git /app
+RUN mkdir /app
+RUN git clone https://github.com/gpodder/mygpo.git /app/mygpo-git
+WORKDIR /app/mygpo-git
 RUN virtualenv venv \
   && . venv/bin/activate \
   && pip install -r requirements.txt \
@@ -17,6 +17,6 @@ RUN virtualenv venv \
   && pip install -r requirements-setup.txt \
   && pip install -r requirements-test.txt
 
-RUN mkdir -p /app/envs
+RUN mkdir -p /app/mygpo-git/envs
 
-COPY ./docker-entrypoint.sh /app/
+COPY ./scripts /app/

@@ -2,15 +2,30 @@ services:
   mygpo:
     build:
       context: .
-    entrypoint: /app/docker-entrypoint.sh
+    entrypoint: /app/scripts/mygpo-entrypoint.sh
     volumes:
-      - "./envs:/app/envs"
+      - "./mygpo-git:/app/mygpo-git"
       - "./data/media:/tmp/mygpo-media"
+      - "./envs:/app/mygpo-git/envs"
+      - "./scripts:/app/scripts"
     ports:
       - "8000:8000"
     depends_on:
       - db
       - redis
+      - worker
+
+  worker:
+    build:
+      context: .
+    entrypoint: /app/scripts/worker-entrypoint.sh
+    volumes:
+      - "./mygpo-git:/app/mygpo-git"
+      - "./envs:/app/mygpo-git/envs"
+      - "./scripts:/app/scripts"
+    depends_on:
+      - redis
+
   db:
     image: postgres:latest
     volumes:
@@ -19,7 +34,15 @@ services:
       - POSTGRES_DB=mygpo
       - POSTGRES_PASSWORD=mygpo
       - POSTGRES_USER=mygpo
+    ports:
+      - "5432:5432"
   redis:
     image: redis:latest
+    ports:
+      - "8443:8443"
+      - "9443:9443"
+      - "8001:8001"
+      - "12000:12000"
+      - "6379:6379"
     volumes:
       - "./data/media:/tmp/mygpo-media"
