@@ -14,6 +14,7 @@ services:
       - db
       - redis
       - worker
+      - scheduler
 
   worker:
     build:
@@ -25,6 +26,17 @@ services:
       - "./scripts:/app/scripts"
     depends_on:
       - redis
+
+  scheduler:
+    build:
+      context: .
+    entrypoint: /app/scripts/scheduler-entrypoint.sh
+    depends_on:
+      - db
+    volumes:
+      - "./mygpo-git:/app/mygpo-git"
+      - "./envs:/app/mygpo-git/envs"
+      - "./scripts:/app/scripts"
 
   db:
     image: postgres:latest
