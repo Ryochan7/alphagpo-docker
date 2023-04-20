@@ -22,6 +22,7 @@ services:
     entrypoint: /app/scripts/worker-entrypoint.sh
     volumes:
       - "./mygpo-git:/app/mygpo-git"
+      - "./data/media:/tmp/mygpo-media"
       - "./envs:/app/mygpo-git/envs"
       - "./scripts:/app/scripts"
     depends_on:
