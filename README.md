@@ -1,6 +1,8 @@
 # MyGPO: Dockerized
 This is a dockerized version of MyGPO, which powere GPodder.net.  It is very incomplete and not currently suitable for production deploys but may be useful for development and some self-hosting scenarios.
 
+If you find this useful, please give it a star.  If you find issues, please open an issue.
+
 # Usage
 
 * Start the app with `docker-compose up`.  The app will be available at http://localhost:8000
