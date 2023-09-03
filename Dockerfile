@@ -3,7 +3,7 @@ FROM debian:latest
 # Install dependencies
 RUN apt-get update \
   && apt-get install -y libpq-dev libjpeg-dev zlib1g-dev libwebp-dev \
-  build-essential python3-dev virtualenv libffi-dev git python
+  build-essential python3-dev virtualenv libffi-dev git python3 python3-pip
 
 # Install mygpo
 RUN mkdir /app
