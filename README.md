@@ -5,6 +5,7 @@ If you find this useful, please give it a star.  If you find issues, please open
 
 # Usage
 
+* Clone mygpo Git repository in local host directory by running `git clone https://github.com/gpodder/mygpo.git /app/mygpo-git`
 * Start the app with `docker-compose up`.  The app will be available at http://localhost:8000
 * Note that no periodic tasks are currently run, so you will need to set them up manually via the admin dashboard (http://localhost:8000/admin/)
 * In order to register a new user, use the registration form in the app.  Then attempt to log in.  A confirmation link will be printed to the console.  Copy the link and paste it into your browser to confirm the account.  NOTE: You may need to attempt to login a few times to get this to work.  I'm not sure why.
