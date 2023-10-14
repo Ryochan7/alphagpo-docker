@@ -1,5 +1,5 @@
-# MyGPO: Dockerized
-This is a dockerized version of MyGPO, which powere GPodder.net.  It is very incomplete and not currently suitable for production deploys but may be useful for development and some self-hosting scenarios.
+# AlphaGpo: Dockerized
+This is a dockerized version of AlphaGpo, fixed version of gpodder.net.  It is very incomplete and not currently suitable for production deploys but may be useful for development and some self-hosting scenarios.
 
 If you find this useful, please give it a star.  If you find issues, please open an issue.
 
