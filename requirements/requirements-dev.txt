@@ -2,7 +2,7 @@
 sphinx
 pep8
 flake8
-django-debug-toolbar==3.7.0
+django-debug-toolbar==3.2.2
 django-extensions
 jupyter
-black==22.6
+black==21.10b0

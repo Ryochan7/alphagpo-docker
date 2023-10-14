@@ -1,12 +1,12 @@
 services:
-  mygpo:
+  alphagpo:
     build:
       context: .
-    entrypoint: /app/scripts/mygpo-entrypoint.sh
+    entrypoint: /app/scripts/alphagpo-entrypoint.sh
     volumes:
-      - "./mygpo-git:/app/mygpo-git"
-      - "./data/media:/tmp/mygpo-media"
-      - "./envs:/app/mygpo-git/envs"
+      - "./alphagpo-git:/app/alphagpo-git"
+      - "./data/media:/tmp/alphagpo-media"
+      - "./envs:/app/alphagpo-git/envs"
       - "./scripts:/app/scripts"
     ports:
       - "8000:8000"
@@ -15,15 +15,29 @@ services:
       - redis
       - worker
       - scheduler
+      - feedservice
+
+  feedservice:
+    build:
+      context: .
+      dockerfile: feedservice.Dockerfile
+    entrypoint: /app/scripts/feedservice-entrypoint.sh
+    volumes:
+      - "./feedservice:/app/feedservice"
+      - "./data/media:/tmp/alphagpo-media"
+      - "./feedservice-envs:/app/feedservice/envs"
+      - "./scripts:/app/scripts"
+    ports:
+      - "8080:8080"
 
   worker:
     build:
       context: .
     entrypoint: /app/scripts/worker-entrypoint.sh
     volumes:
-      - "./mygpo-git:/app/mygpo-git"
-      - "./data/media:/tmp/mygpo-media"
-      - "./envs:/app/mygpo-git/envs"
+      - "./alphagpo-git:/app/alphagpo-git"
+      - "./data/media:/tmp/alphagpo-media"
+      - "./envs:/app/alphagpo-git/envs"
       - "./scripts:/app/scripts"
     depends_on:
       - redis
@@ -35,8 +49,8 @@ services:
     depends_on:
       - db
     volumes:
-      - "./mygpo-git:/app/mygpo-git"
-      - "./envs:/app/mygpo-git/envs"
+      - "./alphagpo-git:/app/alphagpo-git"
+      - "./envs:/app/alphagpo-git/envs"
       - "./scripts:/app/scripts"
 
   db:
@@ -44,9 +58,9 @@ services:
     volumes:
       - "./data/postgres:/var/lib/postgresql/data"
     environment:
-      - POSTGRES_DB=mygpo
-      - POSTGRES_PASSWORD=mygpo
-      - POSTGRES_USER=mygpo
+      - POSTGRES_DB=alphagpo
+      - POSTGRES_PASSWORD=alphagpo
+      - POSTGRES_USER=alphagpo
     ports:
       - "5432:5432"
   redis:
@@ -58,4 +72,4 @@ services:
       - "12000:12000"
       - "6379:6379"
     volumes:
-      - "./data/media:/tmp/mygpo-media"
+      - "./data/media:/tmp/alphagpo-media"

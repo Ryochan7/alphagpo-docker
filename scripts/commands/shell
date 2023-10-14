@@ -1,2 +1,2 @@
 #!/bin/bash
-docker-compose exec mygpo /bin/bash
+docker-compose exec alphagpo /bin/bash

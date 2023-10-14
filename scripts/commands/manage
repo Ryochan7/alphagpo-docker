@@ -1,6 +1,6 @@
 #!/bin/bash
-docker-compose exec mygpo /bin/bash -c "\
-  cd /app/mygpo-git;
+docker-compose exec alphagpo /bin/bash -c "\
+  cd /app;
   source ./venv/bin/activate;
   envdir envs/dev python manage.py $* \
   "

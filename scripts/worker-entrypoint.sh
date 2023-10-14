@@ -1,5 +1,5 @@
 #!/bin/bash
-cd /app/mygpo-git
+cd /app/alphagpo-git
 
 # Add a sleep period to wait for other containers to start
 # TODO: Find better way to wait for other containers
